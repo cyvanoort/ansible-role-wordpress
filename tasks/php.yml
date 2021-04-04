@@ -1,12 +1,9 @@
-- name: install mariadb
-  apt:
-    name:
-      - libapache2-mod-fcgid
-      - php8.0
-      - php8.0-fpm
-      - php8.0-mysql
-      - php8.0-mbstring
-      - php8.0-curl
-      - php8.0-common
-      - php8.0-mcrypt
-    state: latest
+- name: Install PHP Extensions
+      apt: name={{ item }} update_cache=yes state=latest
+      loop: "{{ php_modules }}"
+      tags: [ php ]
+
+- name: Enable php module
+  shell: /usr/sbin/a2enconf php8.0-fpm
+  notify: Reload Apache
+  tags: [ apache ]
