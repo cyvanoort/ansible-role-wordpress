@@ -1,2 +1,15 @@
 ---
 # tasks file for ansible-role-wordpress
+
+# apache
+- include: apache.yml
+# mariadb
+- include: mariadb.yml
+# php
+- include: php.yml
+# wordpress
+- include: wordpress.yml
+# varnish
+# - include: varnish
+# certbot
+# - include certbot
