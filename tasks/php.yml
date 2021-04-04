@@ -1,9 +1,14 @@
+- apt_repository:
+    repo: ppa:ondrej/php
+    state: present
+    tags: [ php ]
+
 - name: Install PHP Extensions
-      apt: name={{ item }} update_cache=yes state=latest
-      loop: "{{ php_modules }}"
-      tags: [ php ]
+    apt: name={{ item }} update_cache=yes state=latest
+    loop: "{{ php_modules }}"
+    tags: [ php ]
 
 - name: Enable php module
-  shell: /usr/sbin/a2enconf php8.0-fpm
-  notify: Reload Apache
-  tags: [ apache ]
+    shell: /usr/sbin/a2enconf php8.0-fpm
+    notify: Reload Apache
+    tags: [ apache ]
