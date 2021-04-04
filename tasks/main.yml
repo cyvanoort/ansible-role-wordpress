@@ -1,8 +1,8 @@
 ---
 # tasks file for ansible-role-wordpress
 
-# apache
-- include: apache.yml
+# web
+- include: nginx.yml
 # mariadb
 - include: mariadb.yml
 # php

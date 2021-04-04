@@ -1,6 +1,6 @@
 ---
 #System Settings
-php_modules: ['libapache2-mod-fcgid', 'php8.0', 'php8.0-zip', 'php8.0-intl', 'php8.0-soap', 'php8.0-xml', 'php8.0-xmlrcp', 'php8.0-gd', 'php8.0-fpm', 'php8.0-mysql', 'php8.0-mbstring', 'php8.0-curl', 'php8.0-common', 'php8.0-mcrypt']
+php_modules: ['php8.0', 'php8.0-zip', 'php8.0-intl', 'php8.0-soap', 'php8.0-xml', 'php8.0-xmlrcp', 'php8.0-gd', 'php8.0-fpm', 'php8.0-mysql', 'php8.0-mbstring', 'php8.0-curl', 'php8.0-common', 'php8.0-mcrypt']
 
 #MySQL Settings
 mysql_root_password: "mysql_root_password"

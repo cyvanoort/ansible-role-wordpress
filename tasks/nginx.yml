@@ -1,0 +1,13 @@
+---
+- name: Install nginx
+  become: yes
+  apt:
+    name: ['nginx']
+    state: latest
+
+- name: start nginx
+  service:
+    name: nginx
+    enabled: true
+    state: started
+
