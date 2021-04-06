@@ -2,7 +2,7 @@
 - name: Install pymysql for mysql actions
   become: yes
   apt:
-    name: ['pip3']
+    name: ['python3-pip']
     update_cache: yes
     state: present
   tags: [ required ]
