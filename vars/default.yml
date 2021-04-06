@@ -14,4 +14,3 @@ http_conf: "example.conf"
 http_port: "80"
 
 nginx_port: "8080"
-server_hostname: "wordpress"

@@ -13,8 +13,3 @@
     name: nginx
     enabled: true
     state: started
-
-- name: create webroot
-  file:
-    path: /opt/{{ server_hostname }}/
-    state: directory
