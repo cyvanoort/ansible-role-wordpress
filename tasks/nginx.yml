@@ -5,9 +5,16 @@
     name: ['nginx']
     state: latest
 
+- name: Copy nginx configuration for wordpress
+  template: src=nginx-site.conf dest=/etc/nginx/conf.d/default.conf
+
 - name: start nginx
   service:
     name: nginx
     enabled: true
     state: started
 
+- name: create webroot
+  file:
+    path: /opt/{{ server_hostname }}/
+    state: directory
