@@ -1,11 +1,3 @@
-- name: Download and unpack latest WordPress
-  unarchive:
-    src: https://wordpress.org/latest.tar.gz
-    dest: "/var/www/{{ http_host }}"
-    remote_src: yes
-    creates: "/var/www/{{ http_host }}/wordpress"
-  tags: [ wordpress ]
-
 - name: Set ownership
   file:
     path: "/var/www/{{ http_host }}"
@@ -13,6 +5,14 @@
     recurse: yes
     owner: www-data
     group: www-data
+  tags: [ wordpress ]
+
+- name: Download and unpack latest WordPress
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: "/var/www/{{ http_host }}"
+    remote_src: yes
+    creates: "/var/www/{{ http_host }}/wordpress"
   tags: [ wordpress ]
 
 - name: Set permissions for directories
