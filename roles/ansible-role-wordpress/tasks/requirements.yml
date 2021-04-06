@@ -1,0 +1,8 @@
+---
+- name: Install pymysql for mysql actions
+  become: yes
+  pip:
+    name: ['pymysql']
+    state: present
+  tags: [ required ]
+

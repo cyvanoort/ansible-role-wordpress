@@ -1,15 +1,17 @@
-- name: install what I like
+- name: install mariadb
   become: yes
   apt:
     name: ['mariadb-server', 'mariadb-client']
     update_cache: yes
     state: latest
+  tags: [ mariadb ]
 
 - name: start mariadb
   service:
     name: mariadb
     enabled: true
     state: started
+  tags: [ mariadb ]
 
 - name: Root password
   mysql_user:
@@ -19,6 +21,7 @@
     check_implicit_admin: true
     password: "{{ mysql_root_password }}"
     host: localhost
+  tags: [ mariadb ]
 
 - name: remove remote root
   mysql_user:
@@ -28,5 +31,6 @@
     user: root
     host: "{{ ansible_fqdn }}"
     state: absent
+  tags: [ mariadb ]
 
 #TODO CREATE WORDPRESS USER AND DATABASE

@@ -5,12 +5,15 @@
     name: ['nginx']
     update_cache: yes
     state: latest
+  tags: [ nginx ]
 
 - name: Copy nginx configuration for wordpress
   template: src=nginx-site.conf dest=/etc/nginx/conf.d/default.conf
+  tags: [ nginx ]
 
 - name: start nginx
   service:
     name: nginx
     enabled: true
     state: started
+  tags: [ nginx ]

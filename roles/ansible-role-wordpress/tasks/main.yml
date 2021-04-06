@@ -1,6 +1,8 @@
 ---
 # tasks file for ansible-role-wordpress
 
+# required
+- include: requirements.yml
 # web
 - include: nginx.yml
 # mariadb
