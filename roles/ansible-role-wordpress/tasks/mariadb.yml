@@ -35,4 +35,20 @@
     state: absent
   tags: [ mariadb ]
 
+- name: Create wp database
+  mysql_db:
+    name: "{{ wp_db_name }}"
+    state: present
+
+- name: WP user
+  become: yes
+  mysql_user:
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    user: "{{ wp_db_user }}"
+    password: "{{ wp_db_password }}"
+    priv: '"{{ wp_db_name }}".*:ALL'
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  tags: [ mariadb ]
+
 #TODO CREATE WORDPRESS USER AND DATABASE
