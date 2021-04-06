@@ -4,7 +4,10 @@
     tags: [ php ]
 
 - name: Install PHP Extensions
-    apt: name={{ item }} update_cache=yes state=latest
+    apt: 
+      name: {{ item }}
+      update_cache: yes
+      state: latest
     loop: "{{ php_modules }}"
     tags: [ php ]
 
