@@ -20,7 +20,7 @@
     user: root
     check_implicit_admin: true
     password: "{{ mysql_root_password }}"
-    host: localhost
+    login_unix_socket: /var/run/mysqld/mysqld.sock
   tags: [ mariadb ]
 
 - name: remove remote root
