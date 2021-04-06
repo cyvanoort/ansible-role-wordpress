@@ -3,6 +3,7 @@
   become: yes
   apt:
     name: ['pip3']
+    update_cache: yes
     state: present
   tags: [ required ]
 
