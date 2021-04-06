@@ -2,12 +2,15 @@
   become: yes
   apt:
     name: ['mariadb']
+    update_cache: yes
     state: latest
+
 - name: start mariadb
   service:
     name: mariadb
     enabled: true
     state: started
+
 - name: Root password
   mysql_user:
     login_user: root
@@ -16,6 +19,7 @@
     check_implicit_admin: true
     password: "{{ mysql_root_password }}"
     host: localhost
+
 - name: remove remote root
   mysql_user:
     check_implicit_admin: true
