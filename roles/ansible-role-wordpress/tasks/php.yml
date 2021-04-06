@@ -3,7 +3,7 @@
     state: present
     tags: [ php ]
 
-- name: Install PHP Extensions
+- name: "Install PHP Extensions"
     apt:
       pkg:
         - php8.0
@@ -19,11 +19,5 @@
         - php8.0-curl
         - php8.0-common
         - php8.0-mcrypt
-      update_cache: yes
       state: latest
     tags: [ php ]
-
-- name: Enable php module
-    shell: /usr/sbin/a2enconf php8.0-fpm
-    notify: Reload Apache
-    tags: [ apache ]
