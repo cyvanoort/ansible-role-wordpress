@@ -1,7 +1,7 @@
 - name: install what I like
   become: yes
   apt:
-    name: ['mariadb']
+    name: ['mariadb-server', 'mariadb-client']
     update_cache: yes
     state: latest
 
