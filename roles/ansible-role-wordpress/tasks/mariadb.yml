@@ -14,6 +14,7 @@
   tags: [ mariadb ]
 
 - name: Root password
+  become: yes
   mysql_user:
     login_user: root
     login_password: "{{ mysql_root_password }}"
@@ -24,6 +25,7 @@
   tags: [ mariadb ]
 
 - name: remove remote root
+  become: yes
   mysql_user:
     check_implicit_admin: true
     login_user: root
