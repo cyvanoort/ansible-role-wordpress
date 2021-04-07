@@ -23,6 +23,10 @@
   shell: "/usr/bin/find /var/www/{{ http_host }}/wordpress/ -type f -exec chmod 640 {} \\;"
   tags: [ wordpress ]
 
+- name: Set owner and group
+  shell: "/usr/bin/chown -R www-data:www-data /var/www/{{ https_host }}/;"
+  tags: [ wordpress ]
+
 - name: Wordpresss | Fetch random salts for wp-config.php
   local_action: command curl https://api.wordpress.org/secret-key/1.1/salt/
   register: 'wp_salt'
