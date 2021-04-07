@@ -7,8 +7,12 @@
     state: latest
   tags: [ nginx ]
 
+- name: Copy nginx configuration
+  template: src=nginx.conf dest=/etc/nginx/conf.d/default
+  tags: [ nginx ]
+
 - name: Copy nginx configuration for wordpress
-  template: src=nginx-site.conf dest=/etc/nginx/sites-enabled/default
+  template: src=nginx-site.conf dest=/etc/nginx/sites-enabled/wordpress.conf
   tags: [ nginx ]
 
 - name: start nginx
