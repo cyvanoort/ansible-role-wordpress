@@ -24,7 +24,7 @@
   tags: [ wordpress ]
 
 - name: Set owner and group
-  shell: "/usr/bin/chown -R www-data:www-data /var/www/{{ https_host }}/;"
+  shell: "/usr/bin/chown -R www-data:www-data /var/www/;"
   tags: [ wordpress ]
 
 - name: Wordpresss | Fetch random salts for wp-config.php
