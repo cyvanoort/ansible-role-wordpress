@@ -49,7 +49,7 @@
     login_password: "{{ mysql_root_password }}"
     user: "{{ wp_db_user }}"
     password: "{{ wp_db_password }}"
-    priv: '"{{ wp_db_name }}".*:ALL'
+    priv: "{{ wp_db_name }}".*:ALL
     login_unix_socket: /var/run/mysqld/mysqld.sock
   tags: [ mariadb ]
 
