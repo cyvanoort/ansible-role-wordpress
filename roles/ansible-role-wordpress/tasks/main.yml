@@ -12,6 +12,6 @@
 # wordpress
 - include: wordpress.yml
 # varnish
-# - include: varnish
+- include: varnish.yml
 # certbot
 # - include certbot
