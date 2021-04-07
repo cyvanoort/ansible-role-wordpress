@@ -28,4 +28,4 @@ wp_fs_method: 'direct'
 wp_lang: ''
 
 #varnish
-varnish_size: '265m';
+varnish_size: '265m'
