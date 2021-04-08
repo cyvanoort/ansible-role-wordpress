@@ -1,2 +1,13 @@
 ---
 # handlers file for ansible-role-wordpress
+
+- name: Restart nginx
+  systemd:
+    name: nginx
+    state: restarted
+
+- name: Restart varnish
+  systemd:
+    name: varnish
+    daemon_reload: yes
+    state: restarted

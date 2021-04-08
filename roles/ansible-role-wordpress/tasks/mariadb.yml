@@ -52,5 +52,3 @@
     priv: "{{ wp_db_name }}.*:ALL"
     login_unix_socket: /var/run/mysqld/mysqld.sock
   tags: [ mariadb ]
-
-#TODO CREATE WORDPRESS USER AND DATABASE
