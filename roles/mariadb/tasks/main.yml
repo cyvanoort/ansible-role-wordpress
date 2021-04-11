@@ -1,0 +1,54 @@
+- name: install mariadb
+  become: yes
+  apt:
+    name: ['mariadb-server', 'mariadb-client']
+    update_cache: yes
+    state: latest
+  tags: [ mariadb ]
+
+- name: start mariadb
+  service:
+    name: mariadb
+    enabled: true
+    state: started
+  tags: [ mariadb ]
+
+- name: Root password
+  become: yes
+  mysql_user:
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    user: root
+    check_implicit_admin: true
+    password: "{{ mysql_root_password }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  tags: [ mariadb ]
+
+- name: remove remote root
+  become: yes
+  mysql_user:
+    check_implicit_admin: true
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    user: root
+    host: "{{ ansible_fqdn }}"
+    state: absent
+  tags: [ mariadb ]
+
+- name: Create wp database
+  mysql_db:
+    name: "{{ wp_db_name }}"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+- name: WP user
+  become: yes
+  mysql_user:
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    user: "{{ wp_db_user }}"
+    password: "{{ wp_db_password }}"
+    priv: "{{ wp_db_name }}.*:ALL"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  tags: [ mariadb ]

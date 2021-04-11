@@ -1,0 +1,36 @@
+---
+- name: Install varnish
+  become: yes
+  apt:
+    name: ['varnish']
+    update_cache: yes
+    state: latest
+  tags: [ varnish ]
+
+- name: default varnish
+  notify: Restart varnish
+  template:
+    src: "varnish-default.conf"
+    dest: "/etc/default/varnish"
+  tags: [ varnish ]
+
+- name: varnish custom conf
+  notify: Restart varnish
+  template:
+    src: "varnish-custom.conf"
+    dest: "/etc/varnish/custom.vcl"
+  tags: [ varnish ]
+
+- name: varnish service
+  notify: Restart varnish and daemon
+  template:
+    src: "varnish-service"
+    dest: "/lib/systemd/system/varnish.service"
+  tags: [ varnish ]
+
+- name: start varnish
+  service:
+    name: varnish
+    enabled: true
+    state: started
+  tags: [ varnish ]

@@ -1,0 +1,10 @@
+---
+#HTTP Settings
+http_host: "example.com"
+http_conf: "example.conf"
+http_port: "80"
+
+#varnish
+varnish_size: '265m'
+
+

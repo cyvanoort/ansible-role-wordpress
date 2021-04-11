@@ -1,0 +1,11 @@
+---
+#System Settings
+php_modules: ['php8.0', 'php8.0-zip', 'php8.0-intl', 'php8.0-soap', 'php8.0-xml', 'php8.0-xmlrcp', 'php8.0-gd', 'php8.0-fpm', 'php8.0-mysql', 'php8.0-mbstring', 'php8.0-curl', 'php8.0-common', 'php8.0-mcrypt']
+
+#HTTP Settings
+http_host: "example.com"
+http_conf: "example.conf"
+http_port: "80"
+
+nginx_port: "8080"
+
