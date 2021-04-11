@@ -8,22 +8,11 @@
   tags: [ wordpress ]
 
 - name: Download and unpack latest WordPress
-  get_url:
+  unarchive:
+    remote_src: yes
     url: https://wordpress.org/latest.tar.gz
-    dest: "/var/www/{{ http_host }}wordpress"
+    dest: "/var/www/{{ http_host }}/wordpress/"
   tags: [ wordpress ]
-
-  #- name: Set permissions for directories
-  #  shell: "/usr/bin/find /var/www/{{ http_host }}/wordpress/ -type d -exec chmod 750 {} \\;"
-  #  tags: [ wordpress ]
-  #
-  #- name: Set permissions for files
-  #  shell: "/usr/bin/find /var/www/{{ http_host }}/wordpress/ -type f -exec chmod 640 {} \\;"
-  #  tags: [ wordpress ]
-  #
-  #- name: Set owner and group
-  #  shell: "/usr/bin/chown -R www-data:www-data /var/www/;"
-  #  tags: [ wordpress ]
 
 - name: Permissions and owners
   file: 
