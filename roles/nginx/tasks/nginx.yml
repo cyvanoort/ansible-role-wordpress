@@ -29,4 +29,3 @@
     enabled: true
     state: started
   tags: [ nginx ]
-
