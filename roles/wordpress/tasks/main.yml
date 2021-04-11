@@ -10,8 +10,8 @@
 - name: Download and unpack latest WordPress
   unarchive:
     remote_src: yes
-    url: https://wordpress.org/latest.tar.gz
-    dest: "/var/www/{{ http_host }}/wordpress/"
+    creates: "/var/www/{{ http_host }}/wordpress/"
+    src: https://wordpress.org/latest.tar.gz
   tags: [ wordpress ]
 
 - name: Permissions and owners
