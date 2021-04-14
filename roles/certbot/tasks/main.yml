@@ -13,13 +13,13 @@
 - name: Install nginx site for letsencrypt requests
   template:
     src: nginx-letsencrypt.j2
-    dest: /etc/nginx/sites-enabled/letsencrypt.conf
+    dest: /etc/nginx/sites-enabled/{{ certbot_conf }}
   notify: Restart nginx
 
 - name: Reload nginx to activate letsencrypt site
   service: name=nginx state=restarted
 
 - name: Create letsencrypt certificate
-  shell: letsencrypt certonly -n --webroot -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d {{ domain_name }}
+  shell: letsencrypt certonly -n --webroot -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d {{ http_host }}
   args:
-    creates: /etc/letsencrypt/live/{{ domain_name }}
+    creates: /etc/letsencrypt/live/{{ http_host }}

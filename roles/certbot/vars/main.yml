@@ -1,0 +1,5 @@
+---
+http_host: "example.com"
+certbot_conf: "certbot.conf"
+certbot_port: "80"
+
