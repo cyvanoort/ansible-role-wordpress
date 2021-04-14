@@ -1,0 +1,25 @@
+---
+- name: install letsencrypt
+  apt: name=letsencrypt state=latest
+
+- name: create letsencrypt directory
+  file: name=/var/www/letsencrypt state=directory
+
+- name: Generate dhparams
+  shell: openssl dhparam -out /etc/nginx/dhparams.pem 2048
+  args:
+    creates: /etc/nginx/dhparams.pem
+
+- name: Install nginx site for letsencrypt requests
+  template:
+    src: nginx-letsencrypt.j2
+    dest: /etc/nginx/sites-enabled/letsencrypt.conf
+  notify: Restart nginx
+
+- name: Reload nginx to activate letsencrypt site
+  service: name=nginx state=restarted
+
+- name: Create letsencrypt certificate
+  shell: letsencrypt certonly -n --webroot -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d {{ domain_name }}
+  args:
+    creates: /etc/letsencrypt/live/{{ domain_name }}
