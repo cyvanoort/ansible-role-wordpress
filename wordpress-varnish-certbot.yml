@@ -4,4 +4,6 @@
     - requirements
     - nginx
     - mariadb
+    - varnish
     - wordpress
+    - certbot

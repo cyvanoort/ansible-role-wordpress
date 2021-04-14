@@ -4,4 +4,5 @@
     - requirements
     - nginx
     - mariadb
+    - varnish
     - wordpress
