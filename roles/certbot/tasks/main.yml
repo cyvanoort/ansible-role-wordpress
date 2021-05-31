@@ -10,12 +10,17 @@
   args:
     creates: /etc/nginx/dhparams.pem
 
-- name: Copy nginx ssl configuration
-  template: src=nginx-ssl-site.conf dest=/etc/nginx/sites-enabled/wordpresa-ssl.conf
-  notify: Restart nginx
-  tags: [ nginx ]
+- name: Restart nginx
+  ansible.builtin.service:
+    name: nginx.service
+    state: restarted
 
 - name: Create letsencrypt certificate
   shell: letsencrypt certonly -n --webroot -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d {{ http_host }}
   args:
     creates: /etc/letsencrypt/live/{{ http_host }}
+
+- name: Copy nginx ssl configuration
+  template: src=nginx-ssl-site.conf dest=/etc/nginx/sites-enabled/wordpress-ssl.conf
+  notify: Restart nginx
+  tags: [ nginx ]
