@@ -10,8 +10,10 @@
   args:
     creates: /etc/nginx/dhparams.pem
 
-- name: Reload nginx to activate letsencrypt site
-  service: name=nginx state=restarted
+- name: Copy nginx ssl configuration
+  template: src=nginx-ssl-site.conf dest=/etc/nginx/sites-enabled/wordpresa-ssl.conf
+  notify: Restart nginx
+  tags: [ nginx ]
 
 - name: Create letsencrypt certificate
   shell: letsencrypt certonly -n --webroot -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d {{ http_host }}
